@@ -1,5 +1,5 @@
 # 爬去小说《一千八百昼》，作者：蟹总
-# 网站：https://www.33zw.com/xiaoshuo/166999/
+# 网站：https://www.35xs.com/book/276274/
 # charset = utf-8
 
 import requests
