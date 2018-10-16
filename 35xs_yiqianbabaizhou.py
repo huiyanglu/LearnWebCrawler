@@ -1,6 +1,7 @@
-# 爬去小说《一千八百昼》，作者：蟹总
+# 爬取小说《一千八百昼》，作者：蟹总
 # 网站：https://www.35xs.com/book/276274/
 # charset = utf-8
+# 每个章节生成一个txt文件
 
 import requests
 import os
