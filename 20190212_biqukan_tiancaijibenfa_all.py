@@ -1,7 +1,7 @@
 # 爬取小说《天才基本法》，作者：长洱
 # 网站：https://www.biqukan.com/42_42077/
 # charset = utf-8
-# 每个章节生成一个txt文件
+# 所有章节放在同一个TXT文件中
 
 import requests
 import os
@@ -37,8 +37,8 @@ def getChapterContent(each_chapter_dict):
     content_tag = soup.find('div',{'class':'showtxt'})
     p_tag = content_tag.find_all('a')[0]
     print('正在保存的章节-->'+ each_chapter_dict['title'])
-    paragraph = p_tag.get_text().replace('<a>','').strip() # 去掉首尾字符
-    with open(each_chapter_dict['title']+r'.txt','a',encoding = 'utf8')as f:
+    paragraph = each_chapter_dict['title']+'\n'+p_tag.get_text().replace('<a>','').strip() # 去掉首尾字符
+    with open(r'天才基本法全文.txt','a',encoding = 'utf8')as f:
         f.write(''+ paragraph + '\n\n')
         f.close()
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     start = time.clock() # 程序运行起始时间
     novel_url = 'https://www.biqukan.com/42_42077/'
     novel_info = getChapterInfo(novel_url)
-    dir_name = '保存的小说路径'
+    dir_name = '天才基本法'
     if not os.path.exists(dir_name):
         os.mkdir(dir_name)
     os.chdir(dir_name)
