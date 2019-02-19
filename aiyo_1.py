@@ -8,12 +8,25 @@ https://cuiqingcai.com/3179.html
 import requests
 from bs4 import BeautifulSoup
 import os
+import urllib.request
 
+# 保存路径
 file = os.getcwd() + '/meitu/'
-headers = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"}  ##浏览器请求头（大部分网站没有这个请求头会报错、请务必加上哦）
+
+# 网站headers（包含referer破解盗链）
+Hostreferer = {
+    'User-Agent':'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)',
+    'Referer':'http://www.mzitu.com'
+               }
+
+# 图片链接的headers（包含referer破解盗链）
+Picreferer = {
+    'User-Agent':'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)',
+    'Referer':'http://i.meizitu.net'
+              }
+
 all_url = 'https://www.mzitu.com/'
-start_html = requests.get(all_url,headers=headers)
+start_html = requests.get(all_url,headers=Hostreferer)
 Soup = BeautifulSoup(start_html.text, 'html.parser')
 all_a = Soup.find('div',{'class': 'postlist'}).find_all('a')
 for a in all_a:
@@ -25,16 +38,16 @@ for a in all_a:
         os.makedirs(os.path.join(file,path))
         os.chdir(file+path)
         href = a['href']
-        html = requests.get(href,headers=headers)
+        html = requests.get(href,headers=Hostreferer)
         html_Soup = BeautifulSoup(html.text,'html.parser')
         max_span = html_Soup.find('div',{'class': 'pagenavi'}).find_all('span')[-2].get_text()
         for page in range(1,int(max_span)+1):
             page_url = href + '/' + str(page)
-            img_html = requests.get(page_url,headers=headers)
+            img_html = requests.get(page_url,headers=Hostreferer)
             img_Soup = BeautifulSoup(img_html.text,'html.parser')
             img_url = img_Soup.find('div',{'class': 'main-image'}).find('img')['src']
             name = img_url[-9:-4]
-            img = requests.get(img_url,headers=headers)
+            img = requests.get(img_url,headers=Picreferer)
             f = open(name+'.jpg','ab')
             f.write(img.content)
             f.close()
