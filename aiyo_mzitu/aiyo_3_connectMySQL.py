@@ -23,6 +23,18 @@ class Mzitu():
         self.url = ''
         self.img_urls = ''
 
+        # 连接数据库
+        self.connect = pymysql.Connect(
+            host='localhost',
+            port=3306,
+            user='root',
+            passwd='87869973lhy',
+            db='mzitu',
+            charset='utf8'
+        )
+        # 获取游标
+        self.cursor = self.connect.cursor()
+
     def all_url(self,url):
         start_html = request.get(url,3) #调用
         Soup = BeautifulSoup(start_html.text, 'html.parser')
@@ -36,7 +48,6 @@ class Mzitu():
                 path = str(title)
                 self.mkdir(path)
                 href = a['href']
-                #self.url = href #页面地址保存
                 self.html(href)
 
     def html(self,href): #获取每套图中每张图的地址
@@ -48,21 +59,11 @@ class Mzitu():
             page_num += 1
             page_url = href + '/' + str(page)
             self.url = page_url
-            # 连接数据库
-            connect = pymysql.Connect(
-                host='localhost',
-                port=3306,
-                user='root',
-                passwd='87869973lhy',
-                db='mzitu',
-                charset='utf8'
-            )
-            # 获取游标
-            cursor = connect.cursor()
+
             sql = "SELECT url FROM mzitu_1 WHERE url = '%s' "
             data = str(page_url)
-            cursor.execute(sql % data)
-            if cursor.fetchall():
+            self.cursor.execute(sql % data)
+            if self.cursor.fetchall():
                 print('已爬取过该图片')
             else:
                 self.img(page_url,max_span,page_num)
@@ -75,21 +76,11 @@ class Mzitu():
         print(str(self.title),str(self.url),str(self.img_urls))
         #if int(max_span)==page_num:
         self.save(img_url)
-        # 连接数据库
-        connect = pymysql.Connect(
-            host='localhost',
-            port=3306,
-            user='root',
-            passwd='87869973lhy',
-            db='mzitu',
-            charset='utf8'
-        )
-        # 获取游标
-        cursor = connect.cursor()
+
         sql = "INSERT INTO mzitu_1 VALUES ( '%s', '%s', '%s' )"
         data = (str(self.title),str(self.url),str(self.img_urls))
-        cursor.execute(sql % data)
-        connect.commit()
+        self.cursor.execute(sql % data)
+        self.connect.commit()
         print('成功插入数据')
 
     def mkdir(self,path): # 创建文件夹
