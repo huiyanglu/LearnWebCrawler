@@ -9,8 +9,8 @@ class Myspider(scrapy.Spider): #这个类继承自scrapy.Spider
     # name就是我们在entrypoint.py文件中的第三个参数！
     # 此Name的！名字！在整个项目中有且只能有一个、名字不可重复！
     name = 'dingdian'
-    allowed_domains = ['x23us.com']
-    bash_url = 'https://www.x23us.com/class/'
+    allowed_domains = ['23us.us/']
+    bash_url = 'https://www.23us.us/list/'
     bashurl = '.html'
 
     def start_requests(self):

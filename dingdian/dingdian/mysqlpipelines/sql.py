@@ -1,4 +1,4 @@
-import pymysql.connector
+import pymysql.cursors
 from dingdian import settings
 
 MYSQL_HOSTS = settings.MYSQL_HOSTS
@@ -10,10 +10,9 @@ MYSQL_DB = settings.MYSQL_DB
 cnx = pymysql.Connect(host=MYSQL_HOSTS,
             port=MYSQL_PORT,
             user=MYSQL_USER,
-            passwd=MYSQL_PASSWORD,
-            db=MYSQL_DB
-                      )
-cur = cnx.cursor(buffered=True)
+            password=MYSQL_PASSWORD,
+            database=MYSQL_DB)
+cur = cnx.cursor()
 
 class Sql:
     @classmethod

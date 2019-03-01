@@ -10,6 +10,7 @@ class DingdianPipeline(object):
             ret = Sql.select_name(name_id)
             if ret[0]==1:
                 print('已经存在了')
+                pass
             else:
                 xs_name = item['name']
                 xs_author = item['author']
