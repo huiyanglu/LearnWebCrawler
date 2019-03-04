@@ -92,3 +92,4 @@ HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 ITEM_PIPELINES = {
     'dingdianxs.mysqlpipelines.pipelines.DingdianxsPipeline': 1,
 }
+

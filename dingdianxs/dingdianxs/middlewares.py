@@ -6,7 +6,10 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-
+import requests
+import random
+from bs4 import BeautifulSoup
+import time
 
 class DingdianxsSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -101,3 +104,31 @@ class DingdianxsDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+"""
+class ProxyMiddleware(object):
+    def __init__(self):
+        self.ip_pool = self.get_ip()
+
+    def get_ip(self):
+        self.iplist = []  # 初始化一个list用来存放我们获取到的IP
+        html = requests.get('http://www.89ip.cn/').text
+        soup = BeautifulSoup(html, 'html.parser')
+        content_tag = soup.find('table', {'class': 'layui-table'})
+        p_tag = content_tag.find_all('tr')
+        for each in p_tag[1:]:
+            chapter_each = each.get_text().split()[0] + ':' + each.get_text().split()[1]
+            self.iplist.append(chapter_each)  # IP列表
+        return self.iplist
+
+    def process_request(self,request,spider):
+        self.ip = ''.join(str(random.choice(self.iplist)).strip())
+        print('现在使用的代理是--%s--' % self.ip)
+        request.meta['proxy'] = 'http://' + self.ip
+
+    def process_exception(self,request,exception,spider):
+        print(exception)
+        self.ip_pool.remove(self.ip)
+        if len(self.ip_pool)<2:
+            self.ip_pool = self.get_ip()
+        return request
+    """
