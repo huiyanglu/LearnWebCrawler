@@ -1,3 +1,8 @@
+"""
+加入了随机headers和代理IP
+不会被拉黑了QAQ
+"""
+
 import scrapy
 import re
 from scrapy.http import Request
