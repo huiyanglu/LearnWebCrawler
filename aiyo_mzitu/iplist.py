@@ -1,5 +1,6 @@
 """
 爬取网站http://www.89ip.cn/的IP地址，生成列表形式
+用于爬虫代理IP
 """
 import requests
 from bs4 import BeautifulSoup
