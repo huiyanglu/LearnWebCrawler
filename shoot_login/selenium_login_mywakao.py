@@ -7,6 +7,8 @@ selenium初学
 import os
 from PIL import Image
 from selenium import webdriver
+import requests
+from bs4 import BeautifulSoup
 
 url = 'http://www.mywakao.com/login'
 driver = webdriver.Chrome()
@@ -30,3 +32,4 @@ driver.find_element_by_name('captcha').send_keys(captcha)
 
 #点击登录（通过xpath找到登录按钮)
 driver.find_element_by_xpath('//*[@id="submit"]').click()
+
