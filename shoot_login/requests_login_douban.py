@@ -57,13 +57,13 @@ def get_captcha():
     '''
     r = requests.post(url, data=datas, headers=headers)
     page = r.text
-    if '哒' in page:
+    if isLogin(): #判断是否需要验证码
         return 0,0
     else:
         soup = BeautifulSoup(page, "html.parser")
         # 利用bs4获得验证码图片地址
         img_src = soup.find('img', {'id': 'captcha_image'}).get('src')
-        urlretrieve(img_src, 'captcha.jpg')
+        urlretrieve(img_src, 'captcha.jpg') #将远程数据下载到本地
         try:
             im = Image.open('captcha.jpg')
             im.show()
@@ -96,9 +96,7 @@ def login():
     if captcha:
         datas['captcha-solution'] = captcha
         datas['captcha-id'] = captcha_id
-        login_page = session.post(url, data=datas, headers=headers)
-    else:
-        login_page = session.post(url, data=datas, headers=headers)
+    login_page = session.post(url, data=datas, headers=headers)
     page = login_page.text
     soup = BeautifulSoup(page, "html.parser")
     result = soup.findAll('li', attrs={'class': 'nav-user-account'})
