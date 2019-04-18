@@ -6,11 +6,11 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class LouspiderPipeline(object):
+class MylouspiderPipeline(object):
     def process_item(self, item, spider):
-        with open('courses.txt', 'a',encoding='utf-8') as file:
-            line = u"course_name: {0}, learned_count: {1}, image: {2}\n".format(
-                item['name'], item['learned'], item['image'])
+        with open('courses.txt','a',encoding='utf-8') as file:
+            line = u'course name:{0},learned_people:{1},img_url:{2}\n'.format(
+                item['name'],item['learned_people'],item['img_url'])
             file.write(line)
         return item
 

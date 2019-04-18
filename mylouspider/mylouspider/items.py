@@ -8,9 +8,9 @@
 import scrapy
 
 
-class LouspiderItem(scrapy.Item):
+class MylouspiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     name = scrapy.Field()
-    image = scrapy.Field()
-    learned = scrapy.Field()
+    img_url = scrapy.Field()
+    learned_people = scrapy.Field()

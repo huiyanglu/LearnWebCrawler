@@ -8,4 +8,4 @@
 xpath还需要进一步学习
 """
 from scrapy.cmdline import execute
-execute(['scrapy', 'crawl', 'louspider'])
+execute(['scrapy', 'crawl', 'mylouspider'])

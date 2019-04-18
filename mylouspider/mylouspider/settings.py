@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for louspider project
+# Scrapy settings for mylouspider project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'louspider'
+BOT_NAME = 'mylouspider'
 
-SPIDER_MODULES = ['louspider.spiders']
-NEWSPIDER_MODULE = 'louspider.spiders'
+SPIDER_MODULES = ['mylouspider.spiders']
+NEWSPIDER_MODULE = 'mylouspider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'louspider (+http://www.yourdomain.com)'
+#USER_AGENT = 'mylouspider (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'louspider.middlewares.LouspiderSpiderMiddleware': 543,
+#    'mylouspider.middlewares.MylouspiderSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'louspider.middlewares.LouspiderDownloaderMiddleware': 543,
+#    'mylouspider.middlewares.MylouspiderDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'louspider.pipelines.LouspiderPipeline': 300,
+#    'mylouspider.pipelines.MylouspiderPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -90,7 +90,5 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 ITEM_PIPELINES = {
-    'louspider.pipelines.LouspiderPipeline': 300
+    'mylouspider.pipelines.MylouspiderPipeline': 300,
 }
-
-FEED_EXPORT_ENCODING = 'utf-8'
