@@ -8,7 +8,7 @@ wyf_weibo_test.ipynb 使用jupyter notebook分析吴亦凡微博转发数据
 可爬取任意微博的转发
 内容保存在MongoDB中
 待改进：
-爬取至MySQL？
+爬取至MySQL？列数太多不适合爬到MySQL，MongoDB更方便
 数据清洗？
 爬取微博评论？
 
