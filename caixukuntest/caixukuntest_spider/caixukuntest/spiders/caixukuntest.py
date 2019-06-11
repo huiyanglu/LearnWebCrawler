@@ -11,7 +11,7 @@ class CaixukuntestSpider(scrapy.Spider):
 
     def start_requests(self):  # 以start_requests代替strat_urls启动爬虫
         urls = ['https://m.weibo.cn/api/statuses/repostTimeline?'
-                'id=4381402176430992&page={}'.format(i) for i in range(10)]  # 该链接通过浏览器抓包得来（微博移动端）
+                'id=4362729449834537&page={}'.format(i) for i in range(10000)]  # 该链接通过浏览器抓包得来（微博移动端）
         random.shuffle(urls)  # 这个api的数据是实时更新的，所以不需要按照顺序爬，shuffle一下可以增加爬虫效率
 
         for url in urls:
