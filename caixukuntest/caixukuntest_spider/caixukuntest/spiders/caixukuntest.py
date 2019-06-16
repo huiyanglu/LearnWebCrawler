@@ -4,6 +4,7 @@
 import scrapy
 import json
 import random
+from aiyo_2 import request
 
 class CaixukuntestSpider(scrapy.Spider):
     name = 'caixukuntest'

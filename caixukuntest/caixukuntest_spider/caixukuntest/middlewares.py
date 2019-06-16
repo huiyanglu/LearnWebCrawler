@@ -8,6 +8,8 @@
 from scrapy import signals
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
 import time
+from caixukuntest.crawl_ip import GetIP
+
 
 class CaixukuntestSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -74,3 +76,10 @@ class TooManyRequestsRetryMiddleware(RetryMiddleware):
             return request
 
         return response
+
+
+class RandomProxyMiddleware(object):
+    #动态设置ip代理
+    def process_request(self, request, spider):
+        get_ip = GetIP()
+        request.meta["proxy"] = get_ip.get_random_ip()

@@ -64,6 +64,10 @@ DOWNLOADER_MIDDLEWARES = {
 RETRY_HTTP_CODES = [418]
 RETRY_TIMES = 2
 
+DOWNLOADER_MIDDLEWARES = {
+    'caixukuntest.middlewares.RandomProxyMiddleware': 543,
+}
+
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -101,3 +105,4 @@ MONGODB_HOST = os.environ.get('MONGODB_HOST', '127.0.0.1')   #本地数据库
 MONGODB_PORT = os.environ.get('MONGODB_PORT', '27017')    #数据库端口
 MONGODB_URI = 'mongodb://{}:{}'.format(MONGODB_HOST, MONGODB_PORT)
 MONGODB_DATABASE = os.environ.get('MONGODB_DATABASE', 'test1')  #数据库名字
+

@@ -5,6 +5,8 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
+# pipelines.py是设置抓取内容存储方式的文件
+
 from pymongo import MongoClient
 from scrapy.conf import settings
 from pymongo.errors import DuplicateKeyError
@@ -29,7 +31,7 @@ class CaixukuntestPipeline(object):
     def open_spider(self, spider):
         _ = spider
         self.client = MongoClient(self.mongo_uri)
-        self.db = self.client[self.mongo_db]
+        self.db = self.client[self.mongo_db] #指定数据库
         self.db['repost'].ensure_index('mid', unique=True) #创建索引
         # 定义唯一索引，方法就是指定unique键位true
 
